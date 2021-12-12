@@ -9,6 +9,7 @@ const storeID = 'map';
 
 interface IMap {
   map: Map;
+  interactionDraw: boolean;
 }
 
 export const useMapStore = defineStore({
@@ -30,6 +31,7 @@ export const useMapStore = defineStore({
           zoom: 15,
         }),
       }),
+      interactionDraw: true,
     };
   },
 

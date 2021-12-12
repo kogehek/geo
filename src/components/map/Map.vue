@@ -1,4 +1,6 @@
 <template>
+  <button class="start" @click="startDraw">start</button>
+  <button class="stop" @click="stopDraw">stop</button>
   <div id="map" ref="maps"></div>
 </template>
 
@@ -6,6 +8,7 @@
 import 'ol/ol.css';
 import { defineComponent, onMounted } from 'vue';
 import { useMap } from './use/map';
+import { useDrawActive } from './use/draw';
 // import { useMapStore } from 'src/store/map/index';
 
 // import { mapActions } from 'vuex';
@@ -21,8 +24,15 @@ import { useMap } from './use/map';
 export default defineComponent({
   name: 'Map',
   setup() {
+    function startDraw() {
+      useDrawActive(true);
+    }
+    function stopDraw() {
+      useDrawActive(false);
+    }
     onMounted(() => {
       useMap();
+
       // useMapStore();
       // const { map } = useMapStore();
 
@@ -56,6 +66,10 @@ export default defineComponent({
       //   }
       // };
     });
+    return {
+      startDraw,
+      stopDraw,
+    };
   },
 });
 </script>
@@ -65,5 +79,14 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   position: absolute;
+}
+button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 1;
+}
+.stop {
+  top: 40px;
 }
 </style>
