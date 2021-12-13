@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import Map from 'ol/Map';
 import { View } from 'ol';
 import { fromLonLat } from 'ol/proj';
+import { Draw } from 'ol/interaction';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
@@ -9,7 +10,7 @@ const storeID = 'map';
 
 interface IMap {
   map: Map;
-  interactionDraw: boolean;
+  drawPolygon: Draw;
 }
 
 export const useMapStore = defineStore({
@@ -31,7 +32,9 @@ export const useMapStore = defineStore({
           zoom: 15,
         }),
       }),
-      interactionDraw: true,
+      drawPolygon: new Draw({
+        type: 'Polygon',
+      }),
     };
   },
 
