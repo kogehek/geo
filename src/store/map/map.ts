@@ -26,6 +26,7 @@ export const useMapStore = defineStore({
           }),
         ],
         view: new View({
+          projection: 'EPSG:3857',
           center: fromLonLat([27.534977, 53.871309]),
           maxZoom: 19,
           constrainResolution: true,
